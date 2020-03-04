@@ -51,5 +51,7 @@ namespace Avalon.Common.Interfaces
         /// </summary>
         IConveyor Conveyor { get; set; }
 
+        List<object> MenuItems { get; set; }
+
     }
 }

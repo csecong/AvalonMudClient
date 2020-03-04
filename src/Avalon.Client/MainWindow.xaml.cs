@@ -19,6 +19,7 @@ using Avalon.Common.Plugins;
 using ModernWpf.Controls;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Resources;
 
 namespace Avalon
 {
@@ -226,6 +227,14 @@ namespace Avalon
                 // Load the assembly
                 var assembly = Assembly.LoadFrom(file);
 
+                ResourceDictionary rd = new ResourceDictionary();
+                //var compact = new ResourceDictionary { Source = new Uri("/ModernWpf;component/DensityStyles/Compact.xaml", UriKind.Relative) };
+
+                rd.Source = new Uri("/Avalon.Plugins.DarkAndShatteredLands;component/PluginMenuItem.xaml", UriKind.Relative);
+                MenuItem menuItem = (MenuItem)rd["PluginMenu"];
+
+                MenuGame.Items.Add(menuItem);
+
                 // Get the plugins, don't load abstract classes or interfaces.
                 var plugins = assembly.GetTypes().Where(x => pluginType.IsAssignableFrom(x)
                                                              && !x.IsAbstract
@@ -264,6 +273,17 @@ namespace Avalon
                             trigger.Conveyor = App.Conveyor;
                             App.SystemTriggers.Add(trigger);
                         }
+
+                        //var pluginMenu = new MenuItem();
+                        //pluginMenu.Header = "DSL";
+
+                        //foreach (MenuItem item in pluginInstance.MenuItems)
+                        //{
+                        //    item.Style = MenuItemCreatePackage.Style;
+                        //    pluginMenu.Items.Add(item);
+                        //}
+
+                        //MenuGame.Items.Add(pluginMenu);
 
                         App.Conveyor.EchoLog($"Plugins Loaded For: {pluginInstance.IpAddress}", LogType.Success);
                         App.Conveyor.EchoLog($"   => {pluginInstance.Triggers.Count()} Triggers Loaded", LogType.Success);
@@ -654,5 +674,6 @@ namespace Avalon
                 }
             }
         }
+
     }
 }
