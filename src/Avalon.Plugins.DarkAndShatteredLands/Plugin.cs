@@ -79,9 +79,6 @@ namespace Avalon.Plugins.DarkAndShatteredLands
             this.Triggers.Add(new Trigger(@"^([\w'-]+) has conquered (.*)!", "", "", true, "03e68858-53dd-4412-80e3-6c869544ae15", TerminalTarget.Communication, false));
             this.Triggers.Add(new Trigger(@"^personal> Keep Lord clans '(.*) is invading (.*)!'", "", "", true, "16f9a412-a6ef-4b5d-a2b7-4dd36f117416", TerminalTarget.Communication, false));
 
-            var test = new TestMenuItem();
-            this.MenuItems.Add(test);
-
             this.Conveyor.EchoLog($"   => {this.MenuItems.Count} found in the plugin.", LogType.Information);
 
         }
